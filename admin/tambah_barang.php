@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../login/config.php";
+global $conn;
 
 // Cek login & role
 if(!isset($_SESSION['login']) || $_SESSION['role'] != "admin"){
