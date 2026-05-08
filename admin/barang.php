@@ -16,8 +16,8 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] != "admin"){
 }
 
 // Ambil data dari session untuk ditampilkan di dashboard
-$nama = isset($_SESSION['nama']) ? htmlspecialchars($_SESSION['nama']) : 'Admin';
-$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : 0;
+$nama    = isset($_SESSION['nama'])    ? htmlspecialchars($_SESSION['nama'])    : 'Admin';
+$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user']                  : 0;
 
 // Cek koneksi database
 if(!$conn){
@@ -25,7 +25,7 @@ if(!$conn){
 }
 
 // Ambil data barang dari database
-$query = "SELECT * FROM barang ORDER BY id_barang DESC";
+$query  = "SELECT * FROM barang ORDER BY id_barang DESC";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -86,13 +86,13 @@ $result = mysqli_query($conn, $query);
 
                 <!-- Action Buttons -->
                 <div class="action-bar">
-                    <a href="tambah_barang.php" class="btn-primary">Tambah Barang </a>
-                    <input type="text" class="search-box" placeholder="Cari barang...">
+                    <a href="tambah_barang.php" class="btn-primary">Tambah Barang</a>
+                    <input type="text" id="searchInput" class="search-box" placeholder="Cari barang..." onkeyup="filterTable()">
                 </div>
 
                 <!-- Barang Table -->
                 <div class="table-container">
-                    <table class="data-table">
+                    <table class="data-table" id="barangTable">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -104,34 +104,36 @@ $result = mysqli_query($conn, $query);
                             </tr>
                         </thead>
                         <tbody>
-<?php if(mysqli_num_rows($result) > 0): ?>
-    <?php while($row = mysqli_fetch_assoc($result)): ?>
-        <tr>
-            <td><?= $row['id_barang']; ?></td>
-            <td><?= htmlspecialchars($row['nama_barang']); ?></td>
-            <td><?= htmlspecialchars($row['jenis']); ?></td>
-            <td>Rp <?= number_format($row['harga'], 0, ',', '.'); ?></td>
-            <td>
-                <?php if($row['stok'] > 20): ?>
-                    <span class="badge badge-success"><?= $row['stok']; ?></span>
-                <?php elseif($row['stok'] > 5): ?>
-                    <span class="badge badge-warning"><?= $row['stok']; ?></span>
-                <?php else: ?>
-                    <span class="badge badge-danger"><?= $row['stok']; ?></span>
-                <?php endif; ?>
-            </td>
-            <td>
-                <a href="#" class="btn-edit">Edit</a>
-                <a href="#" class="btn-delete">Hapus</a>
-            </td>
-        </tr>
-    <?php endwhile; ?>
-<?php else: ?>
-    <tr>
-        <td colspan="6" style="text-align:center;">Data barang belum tersedia</td>
-    </tr>
-<?php endif; ?>
-</tbody>
+                            <?php if(mysqli_num_rows($result) > 0): ?>
+                                <?php while($row = mysqli_fetch_assoc($result)): ?>
+                                    <tr>
+                                        <td><?= $row['id_barang']; ?></td>
+                                        <td><?= htmlspecialchars($row['nama_barang']); ?></td>
+                                        <td><?= htmlspecialchars($row['jenis']); ?></td>
+                                        <td>Rp <?= number_format($row['harga'], 0, ',', '.'); ?></td>
+                                        <td>
+                                            <?php if($row['stok'] > 20): ?>
+                                                <span class="badge badge-success"><?= $row['stok']; ?></span>
+                                            <?php elseif($row['stok'] > 5): ?>
+                                                <span class="badge badge-warning"><?= $row['stok']; ?></span>
+                                            <?php else: ?>
+                                                <span class="badge badge-danger"><?= $row['stok']; ?></span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <a href="edit_barang.php?id=<?= $row['id_barang']; ?>" class="btn-edit">Edit</a>
+                                            <a href="hapus_barang.php?id=<?= $row['id_barang']; ?>"
+                                               class="btn-delete"
+                                               onclick="return confirm('Yakin ingin menghapus barang \'<?= htmlspecialchars(addslashes($row['nama_barang'])); ?>\'?')">Hapus</a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="6" style="text-align:center;">Data barang belum tersedia</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
                     </table>
                 </div>
             </section>
@@ -142,5 +144,18 @@ $result = mysqli_query($conn, $query);
             </footer>
         </main>
     </div>
+
+    <script>
+        // Fungsi pencarian real-time di tabel
+        function filterTable() {
+            const input  = document.getElementById('searchInput').value.toLowerCase();
+            const rows   = document.querySelectorAll('#barangTable tbody tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+    </script>
 </body>
 </html>
