@@ -63,7 +63,7 @@ if(isset($_POST['login'])){
 </head>
 <body>
     <div class="login-container">
-        <h2>Login Projek</h2>
+        <h2>Login</h2>
         <p>Karya Mandiri Pamanukan</p>
 
         <?php if(isset($error)) : ?>
