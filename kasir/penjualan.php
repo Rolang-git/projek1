@@ -35,13 +35,15 @@ $result = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manajemen Barang - Sistem Penjualan Toko</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="penjualan.css">
 </head>
 <body>
     <div class="dashboard-wrapper">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="logo-section">
-                <h3>💳 Kasir </h3>
+                <img src="../km.png" alt="Logo Karya Mandiri" class="logo-img">
+                <h3>KARYA MANDIRI</h3>
             </div>
             <nav class="nav-menu">
                 <a href="dashboard.php" class="nav-link">
@@ -77,14 +79,6 @@ $result = mysqli_query($conn, $query);
             <section class="content-area">
 
             <!-- bagian penjualan -->
-            <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Transaksi Penjualan</title>
-    <link rel="stylesheet" href="penjualan.css">
-</head>
-<body>
 
 <div class="container">
 
@@ -129,34 +123,33 @@ $result = mysqli_query($conn, $query);
 
 
     <!-- TABEL -->
-    <table border="1" cellspacing="0" cellpadding="10">
-        <tr>
-            <th>ID</th>
-            <th>Nama</th>
-            <th>Jenis</th>
-            <th>Ukuran</th>
-            <th>Harga</th>
-            <th>Jumlah</th>
-            <th>Total</th>
-        </tr>
-        <tr>
-            <td colspan="7" style="height:150px;"></td>
-        </tr>
-    </table>
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Jenis</th>
+                    <th>Ukuran</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7" style="height:150px;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- BUTTON -->
-    <div class="footer">
+    <div class="penjualan-footer">
         <button class="btn-selesai">Selesai</button>
     </div>
 
 </div>
-
-</body>
-</html>
-
-
-
-
 
             </section>
 

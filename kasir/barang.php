@@ -42,7 +42,8 @@ $result = mysqli_query($conn, $query);
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="logo-section">
-                <h3>💳 Kasir </h3>
+                <img src="../km.png" alt="Logo Karya Mandiri" class="logo-img">
+                <h3>KARYA MANDIRI</h3>
             </div>
             <nav class="nav-menu">
                 <a href="dashboard.php" class="nav-link">
@@ -97,9 +98,9 @@ $result = mysqli_query($conn, $query);
 <?php if(mysqli_num_rows($result) > 0): ?>
     <?php while($row = mysqli_fetch_assoc($result)): ?>
         <tr>
-            <td><?= $row['id']; ?></td>
+            <td><?= $row['id_barang']; ?></td>
             <td><?= htmlspecialchars($row['nama_barang']); ?></td>
-            <td><?= htmlspecialchars($row['jenis_bahan']); ?></td>
+            <td><?= htmlspecialchars($row['jenis']); ?></td>
             <td>Rp <?= number_format($row['harga'], 0, ',', '.'); ?></td>
             <td>
                 <?php if($row['stok'] > 20): ?>
