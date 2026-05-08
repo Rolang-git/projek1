@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../login/config.php";
+global $conn;
 
 // Cek apakah user sudah login 
 if(!isset($_SESSION['login']) || $_SESSION['login'] !== true){
