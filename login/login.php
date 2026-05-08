@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "config.php";
+global $conn;
 
 // Cek apakah user sudah login, jika ya redirect ke dashboard
 if(isset($_SESSION['login']) && $_SESSION['login'] === true){
@@ -62,7 +63,7 @@ if(isset($_POST['login'])){
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
+        <h2>Login Projek</h2>
         <p>Karya Mandiri Pamanukan</p>
 
         <?php if(isset($error)) : ?>
