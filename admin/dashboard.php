@@ -39,7 +39,7 @@ if(!$conn){
         <aside class="sidebar">
             <div class="logo-section">
                 <img src="../km.png" alt="Logo Karya Mandiri" class="logo-img">
-                <h3>KARYA MANDIRI</h3>
+                <h3>KARYA MANDIRI farel</h3>
             </div>
             <nav class="nav-menu">
                 <a href="dashboard.php" class="nav-link active">
