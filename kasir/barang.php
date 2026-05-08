@@ -25,7 +25,7 @@ if(!$conn){
 }
 
 // Ambil data barang dari database
-$query = "SELECT * FROM barang ORDER BY id DESC";
+$query = "SELECT * FROM barang ORDER BY id_barang DESC";
 $result = mysqli_query($conn, $query);
 ?>
 
