@@ -10,12 +10,12 @@ if(!isset($_SESSION['login']) || $_SESSION['role'] != "admin"){
 
 if(isset($_POST['simpan'])){
     $nama_barang = mysqli_real_escape_string($conn, $_POST['nama_barang']);
-    $jenis_bahan = mysqli_real_escape_string($conn, $_POST['jenis_bahan']);
+    $jenis = mysqli_real_escape_string($conn, $_POST['jenis']);
     $harga = intval($_POST['harga']);
     $stok = intval($_POST['stok']);
 
-    $query = "INSERT INTO barang (nama_barang, jenis_bahan, harga, stok) 
-              VALUES ('$nama_barang', '$jenis_bahan', '$harga', '$stok')";
+    $query = "INSERT INTO barang (nama_barang, harga, stok, jenis) 
+              VALUES ('$nama_barang', '$harga', '$stok', '$jenis')";
 
     if(mysqli_query($conn, $query)){
         echo "<script>
@@ -172,8 +172,8 @@ if(isset($_POST['simpan'])){
                 <input type="text" id="nama_barang" name="nama_barang" placeholder="Masukkan nama barang" required>
             </div>
             <div class="field">
-                <label for="jenis_bahan">Jenis bahan</label>
-                <input type="text" id="jenis_bahan" name="jenis_bahan" placeholder="Masukkan jenis bahan" required>
+                <label for="jenis">Jenis</label>
+                <input type="text" id="jenis" name="jenis" placeholder="Masukkan jenis" required>
             </div>
             <div class="form-row">
                 <div class="field">
