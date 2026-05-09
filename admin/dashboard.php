@@ -85,6 +85,13 @@ if(!$conn){
                 <!-- Stats Cards -->
                 <div class="stats-grid">
                     <div class="stat-card">
+                        <div class="stat-icon">🧑‍💼</div>
+                        <div class="stat-info">
+                            <h3>Jumlah Karyawan</h3>
+                            <p class="stat-number">150</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
                         <div class="stat-icon">📦</div>
                         <div class="stat-info">
                             <h3>Barang</h3>
@@ -114,34 +121,7 @@ if(!$conn){
                     </div>
                 </div>
 
-                <!-- Features Section -->
-                <div class="features-section">
-                    <h2>Fitur Utama</h2>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-title">📦 Manajemen Barang</div>
-                            <p>Tambah, ubah, atau hapus Barang di toko Anda</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-title">💼 Manajemen Pengguna</div>
-                            <p>Kelola akun admin dan kasir</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-title">📈 Laporan Penjualan</div>
-                            <p>Lihat statistik dan laporan penjualan harian</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-title">📊 Analytics</div>
-                            <p>Analisis performa toko secara mendalam</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <p>&copy; 2026 Sistem Penjualan Toko. All rights reserved.</p>
-            </footer>
+                
         </main>
     </div>
 </body>

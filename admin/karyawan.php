@@ -24,10 +24,16 @@ if(!$conn){
     die("Koneksi database gagal!");
 }
 
-// Ambil data barang dari database
+// Ambil data karyawan dari database
 $query = "SELECT * FROM karyawan ORDER BY id_karyawan DESC";
 $result = mysqli_query($conn, $query);
+
+// Ambil daftar divisi untuk filter
+$queryDivisi = "SELECT DISTINCT posisi FROM karyawan ORDER BY posisi ASC";
+$resultDivisi = mysqli_query($conn, $queryDivisi);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -87,10 +93,16 @@ $result = mysqli_query($conn, $query);
                 <!-- Action Buttons -->
                 <div class="action-bar">
                     <a href="tambah_karyawan.php" class="btn-primary">Tambah Karyawan</a>
-                    <input type="text" class="search-box" placeholder="Cari karyawan...">
+                    <input type="text" id="searchInput" class="search-box" placeholder="Cari nama karyawan..." onkeyup="filterTable()">
+                    <select id="divisiFilter" class="filter-select" onchange="filterTable()">
+                        <option value="">Semua Divisi</option>
+                        <?php while($divisi = mysqli_fetch_assoc($resultDivisi)): ?>
+                            <option value="<?= htmlspecialchars($divisi['posisi']); ?>"><?= htmlspecialchars($divisi['posisi']); ?></option>
+                        <?php endwhile; ?>
+                    </select>
                 </div>
 
-                <!-- Barang Table -->
+                <!-- Daftar Karyawan -->
                 <div class="table-container">
                     <table class="data-table">
                         <thead>
@@ -106,18 +118,19 @@ $result = mysqli_query($conn, $query);
 <?php if(mysqli_num_rows($result) > 0): ?>
     <?php while($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
-                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?></td>
                                 <td><?php echo htmlspecialchars($row['nama']); ?></td>
+                                <td><?php echo isset($row['no_telpon']) ? htmlspecialchars($row['no_telpon']) : ''; ?></td>
                                 <td><?php echo htmlspecialchars($row['posisi']); ?></td>
                                 <td>
-                                    <a href="edit_karyawan.php?id=<?php echo $row['id']; ?>" class="btn-edit">Edit</a>
-                                    <a href="hapus_karyawan.php?id=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">Hapus</a>
+                                    <a href="edit_karyawan.php?id=<?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?>" class="btn-edit">Edit</a>
+                                    <a href="hapus_karyawan.php?id=<?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?>" class="btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">Hapus</a>
                                 </td>
                             </tr>
     <?php endwhile; ?>
 <?php else: ?>
     <tr>
-        <td colspan="4" style="text-align:center;">Data karyawan belum tersedia</td>
+        <td colspan="5" style="text-align:center;">Data karyawan belum tersedia</td>
     </tr>
 <?php endif; ?>
 </tbody>
@@ -131,5 +144,22 @@ $result = mysqli_query($conn, $query);
             </footer>
         </main>
     </div>
+
+    <script>
+        function filterTable() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const divisiValue = document.getElementById('divisiFilter').value.toLowerCase();
+            const rows = document.querySelectorAll('.data-table tbody tr');
+
+            rows.forEach(row => {
+                const namaText = row.cells[1].textContent.toLowerCase();
+                const divisiText = row.cells[3].textContent.toLowerCase();
+                const matchesSearch = namaText.includes(input);
+                const matchesDivisi = !divisiValue || divisiText === divisiValue;
+
+                row.style.display = matchesSearch && matchesDivisi ? '' : 'none';
+            });
+        }
+    </script>
 </body>
 </html>

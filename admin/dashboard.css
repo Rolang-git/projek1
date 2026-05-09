@@ -362,7 +362,18 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.search-box:focus {
+.filter-select {
+    padding: 10px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    min-width: 200px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus,
+.filter-select:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);

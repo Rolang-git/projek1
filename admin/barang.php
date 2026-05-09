@@ -27,6 +27,10 @@ if(!$conn){
 // Ambil data barang dari database
 $query  = "SELECT * FROM barang ORDER BY id_barang DESC";
 $result = mysqli_query($conn, $query);
+
+// Ambil daftar nama barang untuk filter
+$queryNama = "SELECT DISTINCT nama_barang FROM barang ORDER BY nama_barang ASC";
+$resultNama = mysqli_query($conn, $queryNama);
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +91,13 @@ $result = mysqli_query($conn, $query);
                 <!-- Action Buttons -->
                 <div class="action-bar">
                     <a href="tambah_barang.php" class="btn-primary">Tambah Barang</a>
-                    <input type="text" id="searchInput" class="search-box" placeholder="Cari barang..." onkeyup="filterTable()">
+                    <input type="text" id="searchInput" class="search-box" placeholder="Cari nama barang..." onkeyup="filterTable()">
+                    <select id="nama_barangFilter" class="filter-select" onchange="filterTable()">
+                        <option value="">Semua Nama Barang</option>
+                        <?php while($nama_barang = mysqli_fetch_assoc($resultNama)): ?>
+                            <option value="<?= htmlspecialchars($nama_barang['nama_barang']); ?>"><?= htmlspecialchars($nama_barang['nama_barang']); ?></option>
+                        <?php endwhile; ?>
+                    </select>
                 </div>
 
                 <!-- Barang Table -->
@@ -137,23 +147,23 @@ $result = mysqli_query($conn, $query);
                     </table>
                 </div>
             </section>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <p>&copy; 2026 Sistem Penjualan Toko. All rights reserved.</p>
-            </footer>
+            
         </main>
     </div>
 
     <script>
-        // Fungsi pencarian real-time di tabel
+        // Fungsi pencarian nama barang dan filter nama real-time di tabel
         function filterTable() {
-            const input  = document.getElementById('searchInput').value.toLowerCase();
-            const rows   = document.querySelectorAll('#barangTable tbody tr');
+            const input      = document.getElementById('searchInput').value.toLowerCase();
+            const nama_barangValue = document.getElementById('nama_barangFilter').value.toLowerCase();
+            const rows       = document.querySelectorAll('#barangTable tbody tr');
 
             rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(input) ? '' : 'none';
+                const nama_barangText  = row.cells[1].textContent.toLowerCase();
+                const matchesSearch = nama_barangText.includes(input);
+                const matchesNamaBarang  = !nama_barangValue || nama_barangText === nama_barangValue;
+
+                row.style.display = matchesSearch && matchesNamaBarang ? '' : 'none';
             });
         }
     </script>
