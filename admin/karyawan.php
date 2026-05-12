@@ -111,6 +111,7 @@ $resultDivisi = mysqli_query($conn, $queryDivisi);
                                 <th>Nama Karyawan</th>
                                 <th>No Telpon</th>
                                 <th>Divisi</th>
+                                <th>Alamat</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -122,6 +123,7 @@ $resultDivisi = mysqli_query($conn, $queryDivisi);
                                 <td><?php echo htmlspecialchars($row['nama_karyawan']); ?></td>
                                 <td><?php echo isset($row['no_telepon']) ? htmlspecialchars($row['no_telepon']) : ''; ?></td>
                                 <td><?php echo htmlspecialchars($row['divisi']); ?></td>
+                                <td><?php echo htmlspecialchars($row['alamat']); ?></td>
                                 <td>
                                     <a href="edit_karyawan.php?id=<?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?>" class="btn-edit">Edit</a>
                                     <a href="hapus_karyawan.php?id=<?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?>" class="btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">Hapus</a>

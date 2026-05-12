@@ -39,7 +39,7 @@ $karyawan = mysqli_fetch_assoc($resultKaryawan);
 
 // Proses form submit
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $nama_karyawan = trim(mysqli_real_escape_string($conn, $_POST['nama_karyawan']));
+    $nama_karyawan = trim(mysqli_real_escape_string($conn, $_POST['nama']));
     $no_telepon     = trim(mysqli_real_escape_string($conn, $_POST['no_telepon']));
     $divisi        = trim(mysqli_real_escape_string($conn, $_POST['divisi']));
     $alamat        = trim(mysqli_real_escape_string($conn, $_POST['alamat']));
@@ -174,11 +174,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <div class="form-group">
                         <label for="nama">Nama Karyawan <span style="color:red">*</span></label>
                         <input type="text" id="nama" name="nama" placeholder="Masukkan nama karyawan"
-                               value="<?php echo htmlspecialchars(isset($_POST['nama']) ? $_POST['nama'] : $karyawan['nama']); ?>" required>
+                               value="<?php echo htmlspecialchars(isset($_POST['nama_karyawan']) ? $_POST['nama_karyawan'] : $karyawan['nama_karyawan']); ?>" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="no_telepon">No. Telepon</label>
+                        <label for="no_telepon">No. Telepon<span style="color:red">*</span></label>
                         <input type="text" id="no_telepon" name="no_telepon" placeholder="Masukan No.Telepon"
                                value="<?php echo htmlspecialchars(isset($_POST['no_telepon']) ? $_POST['no_telepon'] : $karyawan['no_telepon']); ?>">
                     </div>

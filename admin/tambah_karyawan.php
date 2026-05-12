@@ -146,13 +146,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <div class="form-group">
                         <label for="nama">Nama Karyawan <span style="color:red">*</span></label>
                         <input type="text" id="nama" name="nama" placeholder="Masukkan nama karyawan"
-                               value="<?php echo isset($_POST['nama']) ? htmlspecialchars($_POST['nama']) : ''; ?>" required>
+                               value="<?php echo isset($_POST['nama_karyawan']) ? htmlspecialchars($_POST['nama_karyawan']) : ''; ?>" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="no_telpon">No. Telepon <span style="color:red">*</span></label>
-                        <input type="text" id="no_telpon" name="no_telpon" placeholder="Masukan No.Telepon"
-                               value="<?php echo isset($_POST['no_telpon']) ? htmlspecialchars($_POST['no_telpon']) : ''; ?>">
+                        <label for="no_telepon">No. Telepon <span style="color:red">*</span></label>
+                        <input type="text" id="no_telepon" name="no_telepon" placeholder="Masukan No.Telepon"
+                               value="<?php echo isset($_POST['no_telepon']) ? htmlspecialchars($_POST['no_telepon']) : ''; ?>" required>
                     </div>
 
                     <div class="form-group">
@@ -160,7 +160,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         <input type="text" id="divisi" name="divisi" placeholder="Masukkan nama divisi"
                                value="<?php echo isset($_POST['divisi']) ? htmlspecialchars($_POST['divisi']) : ''; ?>" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="alamat">Alamat <span style="color:red">*</span></label>
                         <input type="text" id="alamat" name="alamat" placeholder="Masukkan alamat"
