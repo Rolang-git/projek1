@@ -29,7 +29,7 @@ $query = "SELECT * FROM karyawan ORDER BY id_karyawan DESC";
 $result = mysqli_query($conn, $query);
 
 // Ambil daftar divisi untuk filter
-$queryDivisi = "SELECT DISTINCT posisi FROM karyawan ORDER BY posisi ASC";
+$queryDivisi = "SELECT DISTINCT divisi FROM karyawan ORDER BY divisi ASC";
 $resultDivisi = mysqli_query($conn, $queryDivisi);
 ?>
 
@@ -97,7 +97,7 @@ $resultDivisi = mysqli_query($conn, $queryDivisi);
                     <select id="divisiFilter" class="filter-select" onchange="filterTable()">
                         <option value="">Semua Divisi</option>
                         <?php while($divisi = mysqli_fetch_assoc($resultDivisi)): ?>
-                            <option value="<?= htmlspecialchars($divisi['posisi']); ?>"><?= htmlspecialchars($divisi['posisi']); ?></option>
+                            <option value="<?= htmlspecialchars($divisi['divisi']); ?>"><?= htmlspecialchars($divisi['divisi']); ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>
@@ -121,7 +121,7 @@ $resultDivisi = mysqli_query($conn, $queryDivisi);
                                 <td><?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?></td>
                                 <td><?php echo htmlspecialchars($row['nama']); ?></td>
                                 <td><?php echo isset($row['no_telpon']) ? htmlspecialchars($row['no_telpon']) : ''; ?></td>
-                                <td><?php echo htmlspecialchars($row['posisi']); ?></td>
+                                <td><?php echo htmlspecialchars($row['divisi']); ?></td>
                                 <td>
                                     <a href="edit_karyawan.php?id=<?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?>" class="btn-edit">Edit</a>
                                     <a href="hapus_karyawan.php?id=<?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?>" class="btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">Hapus</a>
