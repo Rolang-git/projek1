@@ -119,8 +119,8 @@ $resultDivisi = mysqli_query($conn, $queryDivisi);
     <?php while($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
                                 <td><?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?></td>
-                                <td><?php echo htmlspecialchars($row['nama']); ?></td>
-                                <td><?php echo isset($row['no_telpon']) ? htmlspecialchars($row['no_telpon']) : ''; ?></td>
+                                <td><?php echo htmlspecialchars($row['nama_karyawan']); ?></td>
+                                <td><?php echo isset($row['no_telepon']) ? htmlspecialchars($row['no_telepon']) : ''; ?></td>
                                 <td><?php echo htmlspecialchars($row['divisi']); ?></td>
                                 <td>
                                     <a href="edit_karyawan.php?id=<?php echo isset($row['id_karyawan']) ? $row['id_karyawan'] : $row['id']; ?>" class="btn-edit">Edit</a>

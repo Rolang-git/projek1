@@ -103,6 +103,7 @@ if(isset($_POST['simpan'])){
             border-radius: 8px;
             outline: none;
             transition: border-color 0.15s;
+            appearance: textfield;
             -moz-appearance: textfield;
         }
 

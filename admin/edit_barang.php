@@ -124,6 +124,7 @@ $barang = mysqli_fetch_assoc($result);
             border-radius: 8px;
             outline: none;
             transition: border-color 0.15s;
+            appearance: textfield;
             -moz-appearance: textfield;
         }
 
