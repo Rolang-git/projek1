@@ -82,49 +82,68 @@ $result = mysqli_query($conn, $query);
 
 <div class="container">
 
-    <!-- DATA PENJUALAN -->
-    <div class="row">
-        <div class="col">
-            <p><label>Id Penjualan</label>: <input type="text"></p>
-            <p><label>Tgl Penjualan</label>: <input type="date"></p>
-        </div>
-
-        <div class="col">
-            <p><label>Nama Pelanggan</label>: <input type="text"></p>
-            <p><label>No Telpon</label>: <input type="text"></p>
-        </div>
-    </div>
-
-
-    <!-- INPUT BARANG -->
+    <!-- ROW ATAS -->
     <div class="row">
         <div class="col">
             <p>
-                <label>ID Barang</label>: 
-                <input type="text" style="width: 40%;">
-                <button class="btn">Cari</button>
-            </p>
-            <p><label>Nama Barang</label>: <input type="text" style="width: 60%;"></p>
-            <p>
-                <label>Jenis</label>: 
-                <input type="text" style="width: 60%;">
-                
+                <label>ID Penjualan</label>
+                <input type="text" value="AUTO" readonly>
             </p>
             <p>
-                <button class="btn">Tambah</button>
+                <label>Tgl Penjualan</label>
+                <input type="date" value="<?= date('Y-m-d') ?>" readonly>
             </p>
+            <p>
+                <label>ID Barang</label>
+                <input type="text" id="id_barang">
+                <button type="button" class="btn" onclick="cariBarang()">Cari</button>
+            </p>
+            <p>
+                <label>Nama Barang</label>
+                <input type="text" id="nama_barang" readonly>
+            </p>
+            <p>
+                <label>Jenis</label>
+                <input type="text" id="jenis" readonly>
+            </p>
+            <button type="button" class="btn" onclick="tambahBarang()">Tambah</button>
         </div>
 
         <div class="col">
-            <p><b>GRAND TOTAL :</b></p>
-            <div class="grand-total"></div>
+            <p>
+                <label>Nama Pelanggan</label>
+                <input type="text" name="nama_pelanggan">
+            </p>
+            <p>
+                <label>No Telpon</label>
+                <input type="text" name="no_telepon">
+            </p>
+
+            <p>
+                <label>Ukuran</label>
+                <input type="number" id="ukuran">
+            </p>
+
+            <p>
+                <label>Jumlah</label>
+                <input type="number" id="jumlah">
+            </p>
+
+            <p>
+                <label>Harga</label>
+                <input type="text" id="harga" readonly>
+            </p>
+
+            <p>
+                <label>GRAND TOTAL</label>
+                <input type="text" id="grand_total" readonly class="grand-total">
+            </p>
         </div>
     </div>
 
-
-    <!-- TABEL -->
+    <!-- TABLE -->
     <div class="table-container">
-        <table class="data-table">
+        <table class="data-table" id="tabel">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -137,16 +156,13 @@ $result = mysqli_query($conn, $query);
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="7" style="height:150px;"></td>
-                </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- BUTTON -->
+    <!-- FOOTER -->
     <div class="penjualan-footer">
-        <button class="btn-selesai">Selesai</button>
+        <button class="btn-selesai" type="submit">Selesai</button>
     </div>
 
 </div>
