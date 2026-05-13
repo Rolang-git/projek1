@@ -46,58 +46,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Karyawan</title>
     <link rel="stylesheet" href="dashboard.css">
-    <style>
-        .form-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 32px 36px;
-            max-width: 520px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        }
-        .form-card h3 {
-            margin: 0 0 24px;
-            font-size: 1.2rem;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .form-group label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #555;
-        }
-        .form-group input,
-        .form-group select {
-            padding: 10px 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: border-color 0.2s;
-            outline: none;
-        }
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #4f8ef7;
-        }
-        .form-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-        .alert-error {
-            background: #fdecea;
-            color: #c0392b;
-            border: 1px solid #f5c6cb;
-            border-radius: 8px;
-            padding: 10px 16px;
-            margin-bottom: 18px;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
 <body>
 <div class="dashboard-wrapper">
